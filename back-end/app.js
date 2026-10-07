@@ -57,6 +57,25 @@ app.get('/messages/:messageId', async (req, res) => {
     })
   }
 })
+
+// a route to handle fetching a single message by its id
+app.get('/about', async (req, res) => {
+  // load all messages from database
+  try {
+    
+    res.json({
+      about_me: "I am just a normal student wants to finish this hw",
+      about_photo: 'I dont want to upload my human photo so here is my discord profile photo',
+      photo_url: "/dis.png",
+    })
+  } catch (err) {
+    console.error(err)
+    res.status(400).json({
+      error: err,
+      status: 'failed to retrieve messages from the database',
+    })
+  }
+})
 // a route to handle logging out users
 app.post('/messages/save', async (req, res) => {
   // try to save the message to the database
